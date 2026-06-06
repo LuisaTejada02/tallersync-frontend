@@ -1,8 +1,17 @@
 <template>
   <div class="login-page">
     <div class="login-card">
-      <h1>TallerSync</h1>
-      <p class="subtitle">Sistema de Gestión de Talleres</p>
+     <div class="logo">
+ <img
+  src="/logo.png"
+  alt="TallerSync"
+  class="logo-img"
+/>
+</div>
+
+<p class="subtitle">
+  Bienvenido, ingresa tus credenciales
+</p>
 
       <input
         v-model="email"
@@ -64,77 +73,119 @@ const login = async () => {
   }
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-<style scoped>
-.register-link {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.register-link a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
+*{
+  font-family:'Poppins',sans-serif;
 }
 .login-page {
   min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f8fafc;
-}
 
+  background-image:
+    linear-gradient(
+      rgba(5, 10, 25, 0.65),
+      rgba(5, 10, 25, 0.65)
+    ),
+    url('/fondo-login.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .login-card {
-  width: 400px;
-  background: white;
+  width: 420px;
+
+  background: rgba(2, 20, 50, 0.758);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid #8B1E1E;
+
+  border-radius: 20px;
+
   padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  box-shadow:
+    0 0 20px rgba(212,175,55,.2);
+}
+.logo-img{
+  width: 320px;
+  display: block;
+  margin: 0 auto 2px auto;
+}
+input{
+  width:100%;
+  padding:14px;
+
+  background:transparent ;
+
+  border:1px solid #3b4a63;
+
+  border-radius:10px;
+
+  color:white;
+
+  margin-bottom:15px;
+}
+label{
+  color:white;
+  font-weight:600;
+  font-size:16px;
+}
+button{
+  width: 220px;
+
+  display: block;
+
+  margin: 20px auto;
+
+  padding: 14px;
+
+  background:#8B1E1E;
+  color:black;
+
+  border:none;
+  border-radius:10px;
+
+  font-weight:600;
+  cursor:pointer;
+}
+.subtitle{
+  color:#d1d5db;
+  text-align:center;
+  font-size:18px;
+  font-weight:400;
+  margin-bottom:30px;
 }
 
-h1 {
-  text-align: center;
-  color: #040f2c;
-  margin-bottom: 10px;
+.message{
+  text-align:center;
+  color:#8B1E1E;
+  margin-top:15px;
 }
 
-.subtitle {
-  text-align: center;
-  color: gray;
-  margin-bottom: 25px;
+.register-link{
+  text-align:center;
+  margin-top:20px;
+  color:rgb(84, 79, 79);
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
+.register-link a{
+  color:#8B1E1E;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #821029;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+.register-link a:hover{
+  text-decoration:underline;
 }
 
-button:hover {
-  background: #5b0a11;
-}
-
-.message {
-  margin-top: 15px;
-  text-align: center;
-  color: red;
+input::placeholder{
+  color:#9ca3af;
 }
 </style>
