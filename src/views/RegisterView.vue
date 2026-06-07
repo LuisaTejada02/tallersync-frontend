@@ -1,7 +1,13 @@
 <template>
   <div class="register-page">
     <div class="register-card">
-      <h1>Crear Cuenta</h1>
+        <img
+  src="/logo.png"
+  alt="TallerSync"
+  class="logo-img"
+/>
+
+<h1>Crear Cuenta</h1>
 
 
       <input v-model="full_name" placeholder="Nombre completo" />
@@ -34,7 +40,7 @@
       <p>{{ mensaje }}</p>
 
       <router-link to="/login">
-        Volver al login
+        Volver a Inicio de Sesión
       </router-link>
     </div>
   </div>
@@ -80,46 +86,124 @@ const register = async () => {
   }
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-<style scoped>
-select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+*{
+  font-family:'Poppins',sans-serif;
 }
-.register-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f8fafc;
+.logo-img{
+  width:260px;
+  display:block;
+  margin:0 auto 15px auto;
 }
+.register-page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-.register-card {
-  width: 420px;
-  background: white;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.1);
-}
+  background-image:
+    linear-gradient(
+      rgba(5,10,25,.70),
+      rgba(5,10,25,.70)
+    ),
+    url('/fondo-login.png');
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
+  background-size:cover;
+  background-position:center;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+.register-card{
+  width:450px;
+
+  background:rgba(5,15,35,.88);
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid #8B1E1E;
+
+  border-radius:25px;
+
+  padding:40px;
+
+  box-shadow:
+    0 0 25px rgba(139,30,30,.25);
+}
+
+.register-card h1{
+  text-align:center;
+  color:white;
+  margin-bottom:25px;
+}
+
+input,
+select{
+  width:100%;
+  padding:14px;
+
+  background:#0f172a;
+
+  color:white;
+
+  border:1px solid #8B1E1E;
+
+  border-radius:10px;
+}
+
+option{
+  background:#0f172a;
+  color:white;
+}
+
+input::placeholder{
+  color:#94a3b8;
+}
+
+select{
+  cursor:pointer;
+}
+
+button{
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#8B1E1E;
+
+  color:white;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+button:hover{
+  background:#a32424;
+}
+
+p{
+  text-align:center;
+  margin-top:15px;
+  color:white;
+}
+
+a{
+  display:block;
+  text-align:center;
+  margin-top:15px;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a:hover{
+  color:#8B1E1E;
 }
 </style>

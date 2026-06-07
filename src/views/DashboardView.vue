@@ -20,10 +20,23 @@
         <h2>TallerSync</h2>
 
         <ul class="menu">
+           <li class="menu-item">
+  Inicio
+</li>
 
-          <li class="menu-item">
-            Inicio
-          </li>
+<li
+  class="menu-item"
+  v-if="role === 'admin'"
+>
+  Usuarios
+</li>
+
+<li
+  class="menu-item"
+  v-if="role === 'client'"
+>
+  Mi Perfil
+</li>
 
           <li
             class="menu-item"
@@ -32,6 +45,7 @@
             {{ vehiculosOpen ? '▼' : '▶' }}
             Vehículos
           </li>
+          
 
           <ul
             v-if="vehiculosOpen"
@@ -103,11 +117,13 @@
 
     <main class="content">
 
-      <h1>Bienvenida a TallerSync</h1>
+      <h1>Bienvenido {{ userName }}</h1>
 
-      <p class="welcome">
-        Sistema de Gestión de Talleres Mecánicos
-      </p>
+<p class="welcome">
+  {{ role === 'admin'
+      ? 'Administrador del sistema'
+      : 'Cliente' }}
+</p>
 
       <div class="cards">
 
@@ -139,11 +155,12 @@
 </template>
 
 <script setup>
-
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const userName = localStorage.getItem('userName')
+const role = localStorage.getItem('role')
 
 const vehiculosOpen = ref(false)
 const citasOpen = ref(false)
@@ -153,6 +170,7 @@ const menuOpen = ref(true)
 
 const logout = () => {
   localStorage.removeItem('token')
+  localStorage.removeItem('role')
   router.push('/login')
 }
 </script>

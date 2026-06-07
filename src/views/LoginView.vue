@@ -66,6 +66,16 @@ const login = async () => {
       response.data.data.token
     )
 
+    localStorage.setItem(
+  'role',
+  response.data.data.user.role
+)
+
+localStorage.setItem(
+  'userName',
+  response.data.data.user.full_name
+)
+
     router.push('/dashboard')
 
   } catch (error) {
@@ -147,7 +157,7 @@ button{
   padding: 14px;
 
   background:#8B1E1E;
-  color:black;
+  color:rgb(219, 198, 198);
 
   border:none;
   border-radius:10px;
