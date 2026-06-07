@@ -1,15 +1,20 @@
 <template>
-  <div class="dashboard">
+    <div class="dashboard">
+  <div class="topbar">
 
-   <div class="topbar">
-  <button
-    class="menu-btn"
-    @click="menuOpen = !menuOpen"
-  >
-    ☰
-  </button>
+  <div class="topbar-left">
+    <button
+      class="menu-btn"
+      @click="menuOpen = !menuOpen"
+    >
+      ☰
+    </button>
+  </div>
 
-  <h2>TallerSync</h2>  
+  <div class="topbar-right">
+    <h2>TallerSync</h2>
+  </div>
+
 </div>
 
 <aside
@@ -166,7 +171,7 @@ const vehiculosOpen = ref(false)
 const citasOpen = ref(false)
 const cotizacionesOpen = ref(false)
 const ordenesOpen = ref(false)
-const menuOpen = ref(true)
+const menuOpen = ref(false)
 
 const logout = () => {
   localStorage.removeItem('token')
@@ -184,7 +189,7 @@ const logout = () => {
 
   height: 65px;
 
-  background: #6e0f12;
+  background: #8B1E1E;
   color: white;
 
   display: flex;
@@ -195,18 +200,19 @@ const logout = () => {
   z-index: 1000;
 }
 
-.topbar h2 {
-  margin-left: 15px;
-}
-
 .menu-btn {
   background: transparent;
   border: none;
   color: white;
-
-  font-size: 26px;
+  font-size: 32px;
   cursor: pointer;
 }
+
+.topbar h2 {
+  margin-left: auto;
+  font-weight: 700;
+}
+
 .dashboard {
   display: flex;
   min-height: 100vh;
