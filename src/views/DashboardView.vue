@@ -181,7 +181,7 @@ Usuarios
 
     <p>0</p>
   </div>
-
+</div>
 </main>
 
 </div>
@@ -192,14 +192,14 @@ Usuarios
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  Bell,
+ Bell,
   Home,
+  Users,
+  User,
   Car,
   Calendar,
   FileText,
-  Wrench,
-  Users,
-  User
+  Wrench
 } from 'lucide-vue-next'
 
 const router = useRouter()
