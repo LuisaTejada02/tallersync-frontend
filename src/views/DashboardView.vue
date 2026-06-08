@@ -152,7 +152,7 @@ Usuarios
       <h3>Vehículos</h3>
     </div>
 
-    <p>0</p>
+  <p>{{ totalVehiculos }}</p>
   </div>
 
   <div class="card">
@@ -189,7 +189,38 @@ Usuarios
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted} from 'vue'
+onMounted(async () => {
+
+  console.log('Dashboard cargado')
+
+  try {
+
+    const token = localStorage.getItem('token')
+
+    console.log('Token:', token)
+
+    const response = await axios.get(
+      'http://localhost:3000/api/vehicles',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    console.log(response.data.data)
+
+    totalVehiculos.value =
+      response.data.data.vehicles.length
+
+  } catch (error) {
+
+    console.error('ERROR:', error)
+
+  }
+})
+import axios from 'axios'
 import { useRouter } from 'vue-router'
 import {
  Bell,
@@ -205,6 +236,7 @@ import {
 const router = useRouter()
 const userName = localStorage.getItem('userName')
 const role = localStorage.getItem('role')
+const totalVehiculos = ref(0)
 
 const vehiculosOpen = ref(false)
 const citasOpen = ref(false)
@@ -215,7 +247,33 @@ const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
   router.push('/login')
+onMounted(async () => {
+  try {
 
+    const token =
+      localStorage.getItem('token')
+
+    const response =
+      await axios.get(
+        'http://localhost:3000/api/vehicles',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+console.log(response.data)
+    totalVehiculos.value =
+      response.data.data.length
+
+
+  
+} catch (error) {
+
+    console.error(error)
+
+  }
+})
 }
 </script>
 
