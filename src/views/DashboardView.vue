@@ -225,7 +225,7 @@ const responseOrdenes = await axios.get(
   }
 )
 
-console.log(responseOrdenes.data)
+
 totalOrdenes.value =
   responseOrdenes.data.data.orders.length
   const responseCotizaciones = await axios.get(
