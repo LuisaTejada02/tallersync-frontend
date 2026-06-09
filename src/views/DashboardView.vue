@@ -161,7 +161,7 @@ Usuarios
       <h3>Citas</h3>
     </div>
 
-    <p>0</p>
+    <p>{{ totalCitas }}</p>
   </div>
 
   <div class="card">
@@ -190,16 +190,12 @@ Usuarios
 
 <script setup>
 import { ref,onMounted} from 'vue'
-onMounted(async () => {
 
-  console.log('Dashboard cargado')
+onMounted(async () => {
 
   try {
 
     const token = localStorage.getItem('token')
-
-    console.log('Token:', token)
-
     const response = await axios.get(
       'http://localhost:3000/api/vehicles',
       {
@@ -208,12 +204,20 @@ onMounted(async () => {
         }
       }
     )
-
-    console.log(response.data.data)
-
     totalVehiculos.value =
-      response.data.data.vehicles.length
+  response.data.data.vehicles.length
+  const responseCitas = await axios.get(
+  'http://localhost:3000/api/appointments',
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
+console.log(responseCitas.data)
+totalCitas.value =
+  responseCitas.data.data.appointments.length
   } catch (error) {
 
     console.error('ERROR:', error)
@@ -237,6 +241,7 @@ const router = useRouter()
 const userName = localStorage.getItem('userName')
 const role = localStorage.getItem('role')
 const totalVehiculos = ref(0)
+const totalCitas = ref(0)
 
 const vehiculosOpen = ref(false)
 const citasOpen = ref(false)
@@ -265,7 +270,6 @@ onMounted(async () => {
 console.log(response.data)
     totalVehiculos.value =
       response.data.data.length
-
 
   
 } catch (error) {
