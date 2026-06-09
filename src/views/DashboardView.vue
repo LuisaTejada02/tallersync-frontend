@@ -170,7 +170,7 @@ Usuarios
       <h3>Cotizaciones</h3>
     </div>
 
-    <p>0</p>
+    <p>{{ totalCotizaciones }}</p>
   </div>
 
   <div class="card">
@@ -179,7 +179,7 @@ Usuarios
       <h3>Órdenes</h3>
     </div>
 
-    <p>0</p>
+   <p>{{ totalOrdenes }}</p>
   </div>
 </div>
 </main>
@@ -214,10 +214,29 @@ onMounted(async () => {
     }
   }
 )
-
-console.log(responseCitas.data)
 totalCitas.value =
   responseCitas.data.data.appointments.length
+const responseOrdenes = await axios.get(
+  'http://localhost:3000/api/work-orders',
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
+console.log(responseOrdenes.data)
+totalOrdenes.value =
+  responseOrdenes.data.data.orders.length
+  const responseCotizaciones = await axios.get(
+  'http://localhost:3000/api/quotes',
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+  
   } catch (error) {
 
     console.error('ERROR:', error)
@@ -242,6 +261,8 @@ const userName = localStorage.getItem('userName')
 const role = localStorage.getItem('role')
 const totalVehiculos = ref(0)
 const totalCitas = ref(0)
+const totalOrdenes = ref(0)
+const totalCotizaciones = ref(0)
 
 const vehiculosOpen = ref(false)
 const citasOpen = ref(false)
@@ -252,33 +273,13 @@ const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('role')
   router.push('/login')
-onMounted(async () => {
-  try {
 
-    const token =
-      localStorage.getItem('token')
 
-    const response =
-      await axios.get(
-        'http://localhost:3000/api/vehicles',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
-console.log(response.data)
-    totalVehiculos.value =
-      response.data.data.length
 
-  
-} catch (error) {
 
-    console.error(error)
 
-  }
-})
 }
+
 </script>
 
 <style scoped>
